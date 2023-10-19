@@ -15,6 +15,15 @@
 
        docker build SpringBoot-App-Deployment-K8s-Aws-Eks .
 
+   - if Spring boot application we can directly create docker image by using below command, spring boot version>2.3
+
+         mvn spring-boot:build image
+
+   - run Docker image using below command
+ 
+       docker run --tty <image-name>
+     
+
 ### Create ECR registry in aws account
 
     -

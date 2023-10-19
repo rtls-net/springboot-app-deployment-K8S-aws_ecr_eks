@@ -34,4 +34,34 @@
 
 ### Create ECR registry in aws account
 
+
+
     -
+
+### Install git ,maven and docker using yum install git,docker,maven 
+
+start jenkins like  sudo systemctl start jenkins
+cat <name of the file in UI>
+### provide permission to Dokcer 
+
+      -  sudo usermod -aG docker $USER
+
+        sudo usermod -aG docker ec2-user
+
+   -- start docker as service
+        sudo service docker start
+
+        or  
+        sudo systemctl start docker
+
+     -- give permission to docker
+
+          --verify permission
+              
+              ls -l /var/run/docker.sock
+
+        -- give permission
+
+           sudo chmod 666 /var/run/docker.sock
+
+              

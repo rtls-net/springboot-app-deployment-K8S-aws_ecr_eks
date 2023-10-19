@@ -21,7 +21,15 @@
 
    - run Docker image using below command
  
-       docker run --tty <image-name>
+       docker run --tty <<image-name>>
+
+   - or you can test localy by using below command
+ 
+      mvn spring-boot:run
+
+      or
+
+     java -jar <<jar-name>>
      
 
 ### Create ECR registry in aws account

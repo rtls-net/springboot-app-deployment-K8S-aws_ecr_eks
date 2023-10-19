@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-springboot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: SpringBoot-App-Deployment-K8s-Aws-Eks
+  template:
+    metadata:
+      labels:
+        app: SpringBoot-App-Deployment-K8s-Aws-Eks
+    spec:
+      containers:
+      - name: my-SpringBoot-App-Deployment-K8s-Aws-Eks
+#         image: myacrrepo3210.azurecr.io/myacrrepo3210:latest
+        image: pracregistry.azurecr.io/pracregistry:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8085
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: SpringBoot-App-Deployment-K8s-Aws-Eks
+    k8s-app: SpringBoot-App-Deployment-K8s-Aws-Eks
+  name: SpringBoot-App-Deployment-K8s-Aws-Eks
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: SpringBoot-App-Deployment-K8s-Aws-Eks

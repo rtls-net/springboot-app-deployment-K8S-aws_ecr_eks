@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: SpringBoot-App-Deployment-K8s-Aws-Eks
+  name: SpringBoot-App-Deployment-K8s-Aws-Eks
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: SpringBoot-App-Deployment-K8s-Aws-Eks
+  template:
+    metadata:
+      labels:
+        app: SpringBoot-App-Deployment-K8s-Aws-Eks
+    spec:
+      containers:
+      - name: coins-SpringBoot-App-Deployment-K8s-Aws-Eks
+        image: 088578890509.dkr.ecr.ap-south-1.amazonaws.com/springnew-repo
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: SpringBoot-App-Deployment-K8s-Aws-Eks
+    k8s-app: SpringBoot-App-Deployment-K8s-Aws-Eks
+  name: SpringBoot-App-Deployment-K8s-Aws-Eks
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: SpringBoot-App-Deployment-K8s-Aws-Eks
